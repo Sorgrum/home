@@ -1,0 +1,59 @@
+[user]
+	email = marcelogheiler@gmail.com
+	name = Marcelo Gheiler
+[alias]
+  a = add
+  aa = add --all
+  aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
+  ap = add -p
+  b = branch
+  c = checkout
+  ca = commit --amend
+  t = tag
+  tuah = push
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[core]
+	excludesfile = ~/.gitignore_global
+[color]
+  ui = always
+[color "diff"]
+  commit = green bold
+  frag = magenta bold
+  meta = yellow bold
+  new = green bold
+  old = red bold
+  whitespace = red reverse
+[color "diff-highlight"]
+  newHighlight = green bold 22
+  newNormal = green bold
+  oldHighlight = red bold 52
+  oldNormal = red bold
+[color "branch"]
+  current = red
+  local = yellow
+  remote = green
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = red
+[rebase]
+  autosquash = true
+  autostash = true
+[stash]
+  showPatch = true
+[push]
+  default = matching
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
