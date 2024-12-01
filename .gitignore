@@ -1,0 +1,22 @@
+# Ignore everything
+*
+
+# But not these files.
+!.gitignore
+!.gitconfig
+!.zshrc
+!.gitignore_global
+!.gitattributes_global
+!.vimrc
+!README.md
+
+# And those folders.
+!/.prefs/
+!/.prefs/**
+!bash/
+!bash/**
+!.github/
+!.github/**
+
+# Ignore so we won't commit these in the allowed dirctories.
+.DS_Store
