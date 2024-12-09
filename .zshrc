@@ -49,6 +49,9 @@ setopt correctall
 if has bat ; then
     alias cat='bat'
 fi
+if has eza ; then
+    alias ls='eza -c'
+fi
 if has nvim ; then
     alias vim="nvim"
 fi
