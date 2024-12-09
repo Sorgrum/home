@@ -135,3 +135,6 @@ fi
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/mgheiler/.cache/lm-studio/bin"
