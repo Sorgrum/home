@@ -13,6 +13,16 @@ git remote add origin git@github.com:Sorgrum/home.git
 git reset --hard origin/main
 ```
 
+### Optional Apps
+
+* `nvim` - Popular text editor
+* `eza` - A replacement for `exa`, which is a replacement of `ls`
+* `bat` - Nicer output for `cat`
+* `et` - EternalTerminal, for `ssh` that can survive network disconnections
+
+> [!TIP]
+> macOS: `brew install eza bat nvim`
+
 ### Customize
 
 The installation can be customized by adding anything of your choosing into `~/.zshrc_local`.
@@ -23,7 +33,7 @@ For example, you can add directories to your `$PATH`:
 path=(
     $HOME/Library/Python/3.9/bin
     $path
-    )
+)
 
 ```
 
