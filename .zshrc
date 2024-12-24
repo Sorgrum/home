@@ -69,6 +69,14 @@ if has et ; then
     }
 fi
 
+# Kubernetes
+if has talosctl; then
+    autoload -Uz compinit
+    compinit
+    # Talos command completions
+    source <(talosctl completion zsh)
+fi
+
 # History
 
 HISTSIZE=1048576
@@ -133,11 +141,14 @@ else
     eval "$(starship init zsh)"
 fi
 
+# Start ssh-agent
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    eval "$(ssh-agent -s)" || echo "Failed to start ssh-agent."
+fi
+
 # Load local zshrc
 
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/mgheiler/.cache/lm-studio/bin"
