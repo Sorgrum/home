@@ -77,6 +77,10 @@ if has talosctl; then
     source <(talosctl completion zsh)
 fi
 
+if has mise; then
+    eval "$(mise activate zsh)"
+fi
+
 # History
 
 HISTSIZE=1048576
