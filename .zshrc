@@ -81,6 +81,11 @@ if has mise; then
     eval "$(mise activate zsh)"
 fi
 
+if has kubectl; then
+    source <(kubectl completion zsh)
+    source ~/.zsh_functions/pods.zsh
+fi
+
 # History
 
 HISTSIZE=1048576
@@ -156,3 +161,6 @@ if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
 
+
+# Added by Windsurf
+export PATH="/Users/mgheiler/.codeium/windsurf/bin:$PATH"
