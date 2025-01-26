@@ -84,6 +84,8 @@ fi
 if has kubectl; then
     source <(kubectl completion zsh)
     source ~/.zsh_functions/pods.zsh
+
+    alias kn='kubectl -n'
 fi
 
 # History
