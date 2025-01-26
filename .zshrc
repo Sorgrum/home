@@ -163,6 +163,5 @@ if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
 
-
-# Added by Windsurf
-export PATH="/Users/mgheiler/.codeium/windsurf/bin:$PATH"
+# Fix keybindings in VSCode
+bindkey -e
