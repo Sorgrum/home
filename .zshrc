@@ -69,6 +69,11 @@ if has et ; then
     }
 fi
 
+# zsh-autosuggestions (macOS)
+if has brew && [ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
 # Kubernetes
 if has talosctl; then
     autoload -Uz compinit

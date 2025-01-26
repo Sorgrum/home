@@ -19,9 +19,10 @@ git reset --hard origin/main
 * `eza` - A replacement for `exa`, which is a replacement of `ls`
 * `bat` - Nicer output for `cat`
 * `et` - EternalTerminal, for `ssh` that can survive network disconnections
+* `zsh-autosuggestions` - Fish-like fast/unobtrusive autosuggestions for zsh.
 
 > [!TIP]
-> macOS: `brew install eza bat nvim`
+> macOS: `brew install eza bat nvim zsh-autosuggestions`
 
 ### Customize
 
