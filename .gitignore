@@ -5,6 +5,7 @@
 !.gitignore
 !.gitconfig
 !.zshrc
+!.zprofile
 !.zsh_functions
 !.gitignore_global
 !.gitattributes_global
