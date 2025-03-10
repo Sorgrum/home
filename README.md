@@ -2,6 +2,10 @@
 
 My custom configuration files.
 
+## Prerequisites
+
+* An [SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) connected to your Github account
+
 ## Install
 
 The configuration doesn't require anything to be installed on the machine, but will add additional features if it finds certain apps are installed.
