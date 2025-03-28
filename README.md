@@ -4,7 +4,7 @@ My custom configuration files.
 
 ## Prerequisites
 
-* An [SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) connected to your Github account
+- An [SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) connected to your Github account
 
 ## Install
 
@@ -19,14 +19,15 @@ git reset --hard origin/main
 
 ### Optional Apps
 
-* `nvim` - Popular text editor
-* `eza` - A replacement for `exa`, which is a replacement of `ls`
-* `bat` - Nicer output for `cat`
-* `et` - EternalTerminal, for `ssh` that can survive network disconnections
-* `zsh-autosuggestions` - Fish-like fast/unobtrusive autosuggestions for zsh.
+- `nvim` - Popular text editor
+- `eza` - A replacement for `exa`, which is a replacement of `ls`
+- `bat` - Nicer output for `cat`
+- `et` - EternalTerminal, for `ssh` that can survive network disconnections
+- `zsh-autosuggestions` - Fish-like fast/unobtrusive autosuggestions for zsh.
+- `mise` - A development environment setup tool.
 
 > [!TIP]
-> macOS: `brew install eza bat nvim zsh-autosuggestions`
+> macOS: `brew install eza bat nvim zsh-autosuggestions mise`
 
 ### Customize
 
