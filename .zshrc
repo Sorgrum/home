@@ -158,7 +158,7 @@ else
 fi
 
 # Start ssh-agent
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+if has pgrep && ! pgrep -u "$USER" ssh-agent > /dev/null; then
     eval "$(ssh-agent -s)" || echo "Failed to start ssh-agent."
 fi
 
