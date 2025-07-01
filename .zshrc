@@ -93,6 +93,12 @@ if has kubectl; then
     alias kn='kubectl -n'
 fi
 
+# github-cli
+if has gh; then
+    autoload -U compinit
+    compinit -i
+fi
+
 # History
 
 HISTSIZE=1048576
