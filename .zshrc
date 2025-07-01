@@ -189,12 +189,12 @@ if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
 
-# Check if any SSH keys are loaded, show helpful message if none
+# Check if any SSH keys are loaded, show helpful message if not
 
 if [ -n "$SSH_AUTH_SOCK" ] && ssh-add -l >/dev/null 2>&1; then
     : # Keys are loaded, do nothing
 else
-    echo "💡 No SSH keys loaded. Add 'ssh-add ~/.ssh/your_key' to ~/.zshrc_local to auto-load keys."
+    echo "💡 No SSH keys loaded. Add 'ssh-add ~/.ssh/your_key 2>/dev/null' to ~/.zshrc_local to auto-load keys."
 fi
 
 # Fix keybindings in VSCode
