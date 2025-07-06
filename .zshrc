@@ -44,8 +44,6 @@ alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
 
 # Command Aliases
 
-setopt correctall
-
 if has bat ; then
     alias cat='bat'
 fi
