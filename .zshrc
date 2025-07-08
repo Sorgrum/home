@@ -14,6 +14,10 @@ function has() {
     which "$@" > /dev/null 2>&1
 }
 
+# Enable auto-completion
+autoload -Uz compinit
+compinit
+
 # Set Default Editor
 
 if has nvim ; then
@@ -110,10 +114,6 @@ setopt hist_save_no_dups        # Don't save duplicate history entries
 setopt hist_ignore_all_dups     # Ignore old command duplicates (in current session)
 setopt inc_append_history       # Don't immediately append to history
 setopt no_share_history         # Don't share history between sessions
-
-# Enable auto-completion
-autoload -Uz compinit
-compinit
 
 # Command: git-commit-in-branch
 # Description: Check if a branch contains a commit
