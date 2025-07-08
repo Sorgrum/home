@@ -44,8 +44,6 @@ alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
 
 # Command Aliases
 
-setopt correctall
-
 if has bat ; then
     alias cat='bat'
 fi
@@ -91,6 +89,12 @@ if has kubectl; then
     source ~/.zsh_functions/pods.zsh
 
     alias kn='kubectl -n'
+fi
+
+# github-cli
+if has gh; then
+    autoload -U compinit
+    compinit -i
 fi
 
 # History
@@ -157,15 +161,38 @@ else
     eval "$(starship init zsh)"
 fi
 
-# Start ssh-agent
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    eval "$(ssh-agent -s)" || echo "Failed to start ssh-agent."
+# SSH Agent setup
+
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    # Check if we have a saved agent environment file
+    if [ -f ~/.ssh/ssh-agent.env ]; then
+        source ~/.ssh/ssh-agent.env > /dev/null
+        if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
+            # The saved agent is dead, start a new one
+            ssh-agent > ~/.ssh/ssh-agent.env
+            source ~/.ssh/ssh-agent.env > /dev/null
+        fi
+    else
+        # No agent file exists, start a new one
+        ssh-agent > ~/.ssh/ssh-agent.env
+        source ~/.ssh/ssh-agent.env > /dev/null
+    fi
+    
 fi
+
 
 # Load local zshrc
 
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
+fi
+
+# Check if any SSH keys are loaded, show helpful message if not
+
+if [ -n "$SSH_AUTH_SOCK" ] && ssh-add -l >/dev/null 2>&1; then
+    : # Keys are loaded, do nothing
+else
+    echo "💡 No SSH keys loaded. Add 'ssh-add ~/.ssh/your_key 2>/dev/null' to ~/.zshrc_local to auto-load keys."
 fi
 
 # Fix keybindings in VSCode
