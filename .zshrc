@@ -50,6 +50,8 @@ alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
 
 if has bat ; then
     alias cat='bat'
+elif has batcat ; then
+    alias cat='batcat'
 fi
 if has eza ; then
     alias ls='eza'
