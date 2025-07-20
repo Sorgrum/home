@@ -108,6 +108,11 @@ if has docker; then
     compinit
 fi
 
+if has direnv; then
+    eval "$(direnv hook zsh)"
+fi
+
+
 # History
 
 HISTSIZE=1048576
