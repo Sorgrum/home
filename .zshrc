@@ -101,6 +101,13 @@ if has gh; then
     compinit -i
 fi
 
+# docker completions
+if has docker; then
+    fpath=(/Users/mgheiler/.docker/completions $fpath)
+    autoload -Uz compinit
+    compinit
+fi
+
 # History
 
 HISTSIZE=1048576
