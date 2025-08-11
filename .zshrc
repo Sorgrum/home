@@ -1,11 +1,61 @@
-# zshrc
+# ~/.zshrc
 
-# Path
+# ---------------------------------- Prompt ---------------------------------- #
+
+# Move initial prompt to the bottom of the terminal
+printf '\n%.0s' {1..$LINES}
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+if [ -f ~/.powerlevel10k/powerlevel10k.zsh-theme ]; then 
+    source ~/.powerlevel10k/powerlevel10k.zsh-theme
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# ----------------------------------- Path ----------------------------------- #
 
 path=(
     $path
     ~/.cargo/bin
 )
+
+# ------------------------------------ Zsh ----------------------------------- #
+
+# Enable auto-completion
+autoload -Uz compinit
+compinit
+
+# History
+
+HISTSIZE=1048576
+SAVEHIST=$HISTSIZE
+HISTFILE=~/.history_zsh
+
+setopt interactivecomments      # Enable comments in interactive mode (useful)
+setopt extended_glob            # More powerful glob features
+setopt append_history           # Append to history on exit, don't overwrite it.
+setopt extended_history         # Save timestamps with history
+setopt hist_no_store            # Don't store history commands
+setopt hist_save_no_dups        # Don't save duplicate history entries
+setopt hist_ignore_all_dups     # Ignore old command duplicates (in current session)
+setopt inc_append_history       # Don't immediately append to history
+setopt no_share_history         # Don't share history between sessions
+
+# Run `ls` command after changing directories`
+my_chpwd_hook() ls
+chpwd_functions+=( my_chpwd_hook )
+
+# Fix keybindings in VSCode
+bindkey -e
+
+# ---------------------------------- Aliases --------------------------------- #
 
 # Command: has
 # Description: Check if a command exists
@@ -13,10 +63,6 @@ path=(
 function has() {
     which "$@" > /dev/null 2>&1
 }
-
-# Enable auto-completion
-autoload -Uz compinit
-compinit
 
 # Set Default Editor
 
@@ -48,19 +94,19 @@ alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
 
 # Command Aliases
 
-if has bat ; then
+if has bat; then
     alias cat='bat'
-elif has batcat ; then
+elif has batcat; then
     alias cat='batcat'
 fi
-if has eza ; then
+if has eza; then
     alias ls='eza'
 fi
-if has nvim ; then
+if has nvim; then
     alias vim="nvim"
 fi
 
-if has et ; then
+if has et; then
     autoload colors; colors
     function ssh() {
         # Attempt to connect using EternalTerminal
@@ -72,6 +118,8 @@ if has et ; then
         fi
     }
 fi
+
+# --------------------------- Optional Dependencies -------------------------- #
 
 # zsh-autosuggestions (macOS)
 if has brew && [ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
@@ -112,26 +160,10 @@ if has direnv; then
     eval "$(direnv hook zsh)"
 fi
 
-
-# History
-
-HISTSIZE=1048576
-SAVEHIST=$HISTSIZE
-HISTFILE=~/.history_zsh
-
-setopt interactivecomments      # Enable comments in interactive mode (useful)
-setopt extended_glob            # More powerful glob features
-setopt append_history           # Append to history on exit, don't overwrite it.
-setopt extended_history         # Save timestamps with history
-setopt hist_no_store            # Don't store history commands
-setopt hist_save_no_dups        # Don't save duplicate history entries
-setopt hist_ignore_all_dups     # Ignore old command duplicates (in current session)
-setopt inc_append_history       # Don't immediately append to history
-setopt no_share_history         # Don't share history between sessions
+# ------------------------------ Custom Commands ----------------------------- #
 
 # Command: git-commit-in-branch
 # Description: Check if a branch contains a commit
-
 function git-commit-in-branch() {
     if [ $# -lt 2 ]; then 
         echo "Usage: $funcstack[1] <branch-name> <commit-hash>"
@@ -148,7 +180,6 @@ function git-commit-in-branch() {
 
 # Command: git-remove-local-branches
 # Description: Remove local branches that have been deleted on the remote
-
 function git-remove-local-branches() {
     if git tag > /dev/null 2>&1; then
         git fetch -p \
@@ -160,25 +191,12 @@ function git-remove-local-branches() {
     fi
 }
 
-# starship.rs prompt 
+# ------------------------------ Dev Environment ----------------------------- #
 
-if ! has starship; then
-    echo "Starship not found. Installing..."
-    curl -sS https://starship.rs/install.sh | sh
-fi
-
-if ! has starship; then
-    echo "Starship installation failed. Please install it manually."
-else
-    # Use default starship config if local config is not found
-    if [ ! -f ~/.config/starship.toml ]; then
-        export STARSHIP_CONFIG=/etc/starship.toml
-    fi
-    eval "$(starship init zsh)"
-fi
+# Initialize Rust environment
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # SSH Agent setup
-
 if [ -z "$SSH_AUTH_SOCK" ]; then
     # Check if we have a saved agent environment file
     if [ -f ~/.ssh/ssh-agent.env ]; then
@@ -193,23 +211,17 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
         ssh-agent > ~/.ssh/ssh-agent.env
         source ~/.ssh/ssh-agent.env > /dev/null
     fi
-    
 fi
 
-
 # Load local zshrc
-
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
 
 # Check if any SSH keys are loaded, show helpful message if not
-
 if [ -n "$SSH_AUTH_SOCK" ] && ssh-add -l >/dev/null 2>&1; then
     : # Keys are loaded, do nothing
 else
     echo "💡 No SSH keys loaded. Add 'ssh-add ~/.ssh/your_key 2>/dev/null' to ~/.zshrc_local to auto-load keys."
 fi
 
-# Fix keybindings in VSCode
-bindkey -e
