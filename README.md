@@ -14,6 +14,7 @@ The configuration doesn't require anything to be installed on the machine, but w
 cd $HOME
 git init
 git remote add origin git@github.com:Sorgrum/home.git
+git fetch
 git reset --hard origin/main
 ```
 
