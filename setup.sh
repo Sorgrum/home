@@ -24,6 +24,17 @@ else
     echo "zsh-autocomplete already installed."
 fi
 
+# zsh-syntax-highlighting
+ZSH_SYNTAX_HIGHLIGHTING_DIR=$CONFIG_BASE/.zsh-syntax-highlighting
+if [ ! -f "$ZSH_SYNTAX_HIGHLIGHTING_DIR/zsh-syntax-highlighting.zsh" ]; then
+    echo "Installing zsh-syntax-highlighting..."
+    mkdir -p $ZSH_SYNTAX_HIGHLIGHTING_DIR
+    git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_SYNTAX_HIGHLIGHTING_DIR
+    echo "zsh-syntax-highlighting installed."
+else
+    echo "zsh-syntax-highlighting already installed."
+fi
+
 # additional dependencies
 
 function has() {
