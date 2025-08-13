@@ -30,7 +30,7 @@ path=(
 
 # Enable auto-completion
 autoload -Uz compinit
-compinit
+compinit -u
 
 # History
 
@@ -146,14 +146,14 @@ fi
 # github-cli
 if has gh; then
     autoload -U compinit
-    compinit -i
+    compinit -iu
 fi
 
 # docker completions
 if has docker; then
     fpath=(/Users/mgheiler/.docker/completions $fpath)
     autoload -Uz compinit
-    compinit
+    compinit -u
 fi
 
 if has direnv; then
