@@ -2,6 +2,8 @@
 
 # ---------------------------------- Prompt ---------------------------------- #
 
+CONFIG_BASE="$HOME/.config/zsh"
+
 # Move initial prompt to the bottom of the terminal
 printf '\n%.0s' {1..$LINES}
 
@@ -12,12 +14,20 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [ -f ~/.powerlevel10k/powerlevel10k.zsh-theme ]; then 
-    source ~/.powerlevel10k/powerlevel10k.zsh-theme
+# powerlevel10k
+P10K_DIR=$CONFIG_BASE/.powerlevel10k
+if [ -f "$P10K_DIR/powerlevel10k.zsh-theme" ]; then 
+    source "$P10K_DIR/powerlevel10k.zsh-theme"
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# zsh-autocomplete
+ZSH_AUTOCOMPLETE_DIR=$CONFIG_BASE/.zsh-autocomplete
+if [ -f "$ZSH_AUTOCOMPLETE_DIR/zsh-autocomplete.plugin.zsh" ]; then
+    source "$ZSH_AUTOCOMPLETE_DIR/zsh-autocomplete.plugin.zsh"
+fi
 
 # ----------------------------------- Path ----------------------------------- #
 

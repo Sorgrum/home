@@ -1,12 +1,27 @@
 #!/usr/bin/env zsh
 
-# powerlevel10k
+CONFIG_BASE="$HOME/.config/zsh"
 
-P10K_DIR=~/.powerlevel10k
-if [ ! -d $P10K_DIR ]; then 
+# powerlevel10k
+P10K_DIR=$CONFIG_BASE/.powerlevel10k
+if [ ! -f "$P10K_DIR/powerlevel10k.zsh-theme" ]; then 
     echo "Installing Powerlevel10k theme..."
+    mkdir -p $P10K_DIR
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $P10K_DIR
     echo "Powerlevel10k theme installed."
+else 
+    echo "Powerlevel10k theme already installed."
+fi
+
+# zsh-autocomplete
+ZSH_AUTOCOMPLETE_DIR=$CONFIG_BASE/.zsh-autocomplete
+if [ ! -f "$ZSH_AUTOCOMPLETE_DIR/zsh-autocomplete.plugin.zsh" ]; then
+    echo "Installing zsh-autocomplete..."
+    mkdir -p $ZSH_AUTOCOMPLETE_DIR
+    git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_AUTOCOMPLETE_DIR
+    echo "zsh-autocomplete installed."
+else
+    echo "zsh-autocomplete already installed."
 fi
 
 # additional dependencies
@@ -16,7 +31,7 @@ function has() {
 }
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
-    echo "Installing dependencies..."
+    echo "Installing brew dependencies..."
     brew install \
         bat \
         eza \
