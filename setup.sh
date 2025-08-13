@@ -13,17 +13,6 @@ else
     echo "Powerlevel10k theme already installed."
 fi
 
-# zsh-autocomplete
-ZSH_AUTOCOMPLETE_DIR=$CONFIG_BASE/.zsh-autocomplete
-if [ ! -f "$ZSH_AUTOCOMPLETE_DIR/zsh-autocomplete.plugin.zsh" ]; then
-    echo "Installing zsh-autocomplete..."
-    mkdir -p $ZSH_AUTOCOMPLETE_DIR
-    git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_AUTOCOMPLETE_DIR
-    echo "zsh-autocomplete installed."
-else
-    echo "zsh-autocomplete already installed."
-fi
-
 # zsh-syntax-highlighting
 ZSH_SYNTAX_HIGHLIGHTING_DIR=$CONFIG_BASE/.zsh-syntax-highlighting
 if [ ! -f "$ZSH_SYNTAX_HIGHLIGHTING_DIR/zsh-syntax-highlighting.zsh" ]; then

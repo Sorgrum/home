@@ -23,12 +23,6 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# zsh-autocomplete
-ZSH_AUTOCOMPLETE_DIR=$CONFIG_BASE/.zsh-autocomplete
-if [ -f "$ZSH_AUTOCOMPLETE_DIR/zsh-autocomplete.plugin.zsh" ]; then
-    source "$ZSH_AUTOCOMPLETE_DIR/zsh-autocomplete.plugin.zsh"
-fi
-
 # zsh-syntax-highlighting
 ZSH_SYNTAX_HIGHLIGHTING_DIR=$CONFIG_BASE/.zsh-syntax-highlighting
 if [ -f "$ZSH_SYNTAX_HIGHLIGHTING_DIR/zsh-syntax-highlighting.zsh" ]; then
